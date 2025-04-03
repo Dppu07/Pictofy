@@ -5,6 +5,7 @@ import { assets } from "../assets/assets";
 const Navbar = () => {
   const { user, setUser } = useState(null);
   return (
+    
     <div className = 'flex items-center justify-between  py-4'>
       <Link to="/">
         <img src={assets.logo} alt="logo" className="w-28 sm:w-32 lg:w-40" />
