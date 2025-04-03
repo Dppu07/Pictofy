@@ -8,9 +8,9 @@ const AppContextProvider = (props) => {
   const value = { user,setUser}
 
     return(
-      <AppContextProvider value = {value}>
+      <AppContext.Provider value = {value}>
       {props.children}
-      </AppContextProvider>
+      </AppContext.Provider>
       )
   }
 export default AppContextProvider;
