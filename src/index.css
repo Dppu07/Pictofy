@@ -15,3 +15,27 @@
   color: #e0e0e0;
   font-weight:300;
   }
+
+.filter-grayscale {
+  filter: grayscale(100%);
+}
+
+.filter-sepia {
+  filter: sepia(80%);
+}
+
+.filter-blur {
+  filter: blur(2px);
+}
+
+.filter-brightness {
+  filter: brightness(150%);
+}
+
+.filter-contrast {
+  filter: contrast(200%);
+}
+
+.filter-invert {
+  filter: invert(100%);
+}
