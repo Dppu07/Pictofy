@@ -4,14 +4,15 @@ import FormData from "form-data";
 
 export const generateImage = async (req, res) => {
   try {
-    const { userId, prompt } = req.body;
+    const { prompt } = req.body;
+    const userId = req.userId;
     const user = await userModel.findById(userId);
 
-    if (!user || !prompt) {
+    if (!userId || !prompt) {
       return res.json({ success: false, message: "Missing Details" });
     }
 
-    if (user.crediBalance === 0 || userModel.creditBalance < 0) {
+    if (user.creditBalance === 0 || userModel.creditBalance < 0) {
       return res.json({
         success: false,
         message: "Insufficient Credits",
@@ -23,7 +24,7 @@ export const generateImage = async (req, res) => {
     formData.append("prompt", prompt);
 
     const { data } = await axios.post(
-      "https://clipdrop-api.co/cleanup/v1",
+      "https://clipdrop-api.co/text-to-image/v1",
       formData,
       {
         headers: {

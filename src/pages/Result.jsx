@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { assets } from "../assets/assets";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
+import { AppContext } from "../context/AppContext";
+
 const Result = () => {
   const [image, setImage] = useState(assets.sample_img_1);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
+  const { generateImage } = useContext(AppContext);
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (input) {
+      const image = await generateImage(input);
+      if (image) {
+        setIsImageLoaded(true);
+        setImage(image);
+      }
+    }
+    setLoading(false);
+  };
 
   return (
     <motion.form
@@ -50,6 +65,8 @@ const Result = () => {
           <p
             onClick={() => {
               setIsImageLoaded(false);
+              setInput("");
+              setImage(assets.sample_img_1);
             }}
             className="text-black border border-zinc-900 bg-transparent px-8 py-3 cursor-pointer"
           >
